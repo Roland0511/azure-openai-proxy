@@ -53,7 +53,7 @@ func Init() {
 	}
 
 	log.Println("AzureOpenAIAPIVer: ", AzureOpenAIAPIVer)
-	log.Panicln("AzureOpenAIAPIKey: ", AzureOpenAIAPIKey)
+	log.Println("AzureOpenAIAPIKey: ", AzureOpenAIAPIKey)
 	log.Println("AzureOpenAIEndpoint: ", AzureOpenAIEndpoint)
 	log.Println("AzureOpenAIModelMapper: ", AzureOpenAIModelMapper)
 }
