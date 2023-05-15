@@ -3,13 +3,14 @@ package azure
 import (
 	"bytes"
 	"fmt"
-	"github.com/stulzq/azure-openai-proxy/util"
 	"io"
 	"log"
 	"net/http"
 	"net/http/httputil"
 	"path"
 	"strings"
+
+	"github.com/stulzq/azure-openai-proxy/util"
 
 	"github.com/bytedance/sonic"
 	"github.com/gin-gonic/gin"
@@ -50,8 +51,12 @@ func Proxy(c *gin.Context) {
 		deployment = GetDeploymentByModel(deployment)
 
 		// get auth token from header
+
 		rawToken := req.Header.Get("Authorization")
 		token := strings.TrimPrefix(rawToken, "Bearer ")
+		if token == "" {
+			token = AzureOpenAIAPIKey
+		}
 		req.Header.Set(AuthHeaderKey, token)
 		req.Header.Del("Authorization")
 
